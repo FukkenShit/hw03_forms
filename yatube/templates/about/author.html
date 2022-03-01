@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Об авторе проекта{% endblock %}
+{% block content %}
+  <h1>Привет, я автор</h1>
+  <blockquote class="blockquote">
+    <p class="mb-3">
+      Ехал автор через автор,
+      Видит автор: автор автор. <br>
+      Сунул автор автор в автор,
+      Автор Автор Автор Автор <br>
+    </p>
+    <footer class="blockquote-footer">
+      Неизвестный <cite class="fw-bold" title="Автор">Автор</cite>
+    </footer>
+  </blockquote>
+  <p style="font-size: large">
+    Делаю вид, что мне есть дело до наполнения этой страницы. <br>
+    Вот вам лучше картиночка:
+  </p>
+  {% load static %}
+  <img src="{% static 'img/about/tech_hue_moe.jpeg' %}">
+{% endblock %} 
