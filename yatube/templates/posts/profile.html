@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container py-5">
     <h1>
       Все записи пользователя {{ user_.get_full_name }}
     </h1>
@@ -17,5 +16,4 @@
       {% if not forloop.last %}<hr>{% endif %}
     {% endfor %}
     {% include 'posts/includes/paginator.html' %}
-  </div>
 {% endblock %}
