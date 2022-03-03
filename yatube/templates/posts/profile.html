@@ -12,7 +12,7 @@
       Всего записей: {{ user_.posts.count }}
     </h3>
     {% for post in page_obj %}
-      {% include 'posts/includes/post_card.html' %}
+      {% include 'posts/includes/post_card.html' with hide_author=True %}
       {% if not forloop.last %}<hr>{% endif %}
     {% endfor %}
     {% include 'posts/includes/paginator.html' %}
