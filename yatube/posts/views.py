@@ -19,9 +19,8 @@ def index(request):
 
 def group_posts(request, slug):
     """Страниа со списком постов группы."""
-    group = get_object_or_404(Group, slug=slug)
     context = {
-        'group': group,
+        'group': get_object_or_404(Group, slug=slug),
         'page_obj': get_page_obj(request, group.posts.all(), POSTS_PER_PAGE),
     }
     return render(request, 'posts/group_list.html', context)
@@ -29,9 +28,8 @@ def group_posts(request, slug):
 
 def profile(request, username):
     """Страница с постами пользователя."""
-    user = get_object_or_404(User, username=username)
     context = {
-        'author': user,
+        'author': get_object_or_404(User, username=username),
         'page_obj': get_page_obj(request, user.posts.all(), POSTS_PER_PAGE),
     }
     return render(request, 'posts/profile.html', context)
