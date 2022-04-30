@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Профиль пользователя {{ user_.get_full_name }}
+  Профиль пользователя {{ author.get_full_name }}
 {% endblock %}
 
 {% block content %}
     <h1>
-      Все записи пользователя {{ user_.get_full_name }}
+      Все записи пользователя {{ author.get_full_name }}
     </h1>
     <h3>
-      Всего записей: {{ user_.posts.count }}
+      Всего записей: {{ author.posts.count }}
     </h3>
     {% for post in page_obj %}
       {% include 'posts/includes/post_card.html' with hide_author=True %}
