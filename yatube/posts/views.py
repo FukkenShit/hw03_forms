@@ -51,9 +51,9 @@ def post_create(request):
     if not form.is_valid():
         return render(request, 'posts/create_post.html', {'form': form})
 
-    instanse = form.instance
-    instanse.author = request.user
-    instanse.save()
+    post = form.instance
+    post.author = request.user
+    post.save()
     return redirect('posts:profile', request.user.username)
 
 
