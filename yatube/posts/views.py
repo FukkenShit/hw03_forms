@@ -4,18 +4,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from .forms import PostForm
 from .models import Post, Group, User
+from .utils import get_page_obj
 
 POSTS_PER_PAGE = 10
 
 
 def index(request):
     """Главная страница со списком постов."""
-    posts = Post.objects.all()
-    paginator = Paginator(posts, POSTS_PER_PAGE)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
     context = {
-        'page_obj': page_obj,
+        'page_obj': get_page_obj(request, Post.objects.all(), POSTS_PER_PAGE),
     }
     return render(request, 'posts/index.html', context)
 
@@ -23,14 +20,9 @@ def index(request):
 def group_posts(request, slug):
     """Страниа со списком постов группы."""
     group = get_object_or_404(Group, slug=slug)
-    posts = group.posts.all()
-    paginator = Paginator(posts, POSTS_PER_PAGE)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
     context = {
         'group': group,
-        'page_obj': page_obj,
+        'page_obj': get_page_obj(request, group.posts.all(), POSTS_PER_PAGE),
     }
     return render(request, 'posts/group_list.html', context)
 
@@ -38,12 +30,9 @@ def group_posts(request, slug):
 def profile(request, username):
     """Страница с постами пользователя."""
     user = get_object_or_404(User, username=username)
-    posts = user.posts.all()
-    paginator = Paginator(posts, POSTS_PER_PAGE)
-    page_number = request.GET.get('page')
     context = {
         'user_': user,
-        'page_obj': paginator.get_page(page_number),
+        'page_obj': get_page_obj(request, user.posts.all(), POSTS_PER_PAGE),
     }
     return render(request, 'posts/profile.html', context)
 
