@@ -5,13 +5,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import PostForm
 from .models import Post, Group, User
 
-PER_PAGE = 10
+POSTS_PER_PAGE = 10
 
 
 def index(request):
     """Главная страница со списком постов."""
     posts = Post.objects.all()
-    paginator = Paginator(posts, PER_PAGE)
+    paginator = Paginator(posts, POSTS_PER_PAGE)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -24,7 +24,7 @@ def group_posts(request, slug):
     """Страниа со списком постов группы."""
     group = get_object_or_404(Group, slug=slug)
     posts = group.posts.all()
-    paginator = Paginator(posts, PER_PAGE)
+    paginator = Paginator(posts, POSTS_PER_PAGE)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -39,7 +39,7 @@ def profile(request, username):
     """Страница с постами пользователя."""
     user = get_object_or_404(User, username=username)
     posts = user.posts.all()
-    paginator = Paginator(posts, PER_PAGE)
+    paginator = Paginator(posts, POSTS_PER_PAGE)
     page_number = request.GET.get('page')
     context = {
         'user_': user,
