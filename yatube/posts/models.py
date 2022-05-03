@@ -44,7 +44,15 @@ class Post(models.Model):
     def short_text(self):
         """Обрезанный текст поста для показа в админке."""
         MAX_LENGTH = 50
-        return self.text if len(self.text) <= MAX_LENGTH else self.text[:MAX_LENGTH] + '...'
+        return (
+            self.text if len(self.text) <= MAX_LENGTH
+            else self.text[:MAX_LENGTH] + '...'
+        )
 
     def __str__(self) -> str:
-        return f'{self.pk}\t[Автор: {self.author}]\t[Сообщество: {self.group}]\t[{self.short_text}]'
+        return (
+            f'{self.pk}\t'
+            f'[Автор: {self.author}]\t'
+            f'[Сообщество: {self.group}]\t'
+            f'[{self.short_text}]'
+        )
