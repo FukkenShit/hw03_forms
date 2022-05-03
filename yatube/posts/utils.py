@@ -1,4 +1,5 @@
 """Вспомогательные функции."""
+
 from django.core.paginator import Paginator
 
 
