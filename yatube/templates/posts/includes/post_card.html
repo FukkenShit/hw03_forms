@@ -2,9 +2,9 @@
   <ul>
     {% if not hide_author %}
       <li>
-        Автор: {{ post.author.get_full_name }}
+        Автор: 
         <a href="{% url 'posts:profile' post.author.username %}">
-          Все записи пользователя
+          {{ post.author.get_full_name }}
         </a>
       </li>
     {% endif %}
@@ -19,9 +19,10 @@
     Подробная информация
   </a>
   <br>
-  {% if not hide_group and post.group is not None %}
+  {% if not hide_group and post.group %}
+    Сообщество:
     <a href="{% url 'posts:group_list' post.group.slug %}">
-      Все записи сообщества «{{ post.group.title }}»
+      «{{ post.group.title }}»
     </a>
   {% endif %}
 </article>
