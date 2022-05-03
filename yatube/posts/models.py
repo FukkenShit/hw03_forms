@@ -40,5 +40,11 @@ class Post(models.Model):
     class Meta:
         ordering = ('-pub_date',)
 
+    @property
+    def short_text(self):
+        """Обрезанный текст поста для показа в админке."""
+        MAX_LENGTH = 50
+        return self.text if len(self.text) <= MAX_LENGTH else self.text[:MAX_LENGTH] + '...'
+
     def __str__(self) -> str:
-        return self.text
+        return f'{self.pk}\t[Автор: {self.author}]\t[Сообщество: {self.group}]\t[{self.short_text}]'

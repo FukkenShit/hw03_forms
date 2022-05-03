@@ -15,7 +15,7 @@ class GroupAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     list_display = (
         'pk',
-        'text',
+        'short_text',
         'pub_date',
         'author',
         'group',
